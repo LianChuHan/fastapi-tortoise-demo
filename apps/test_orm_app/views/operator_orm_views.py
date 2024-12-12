@@ -94,8 +94,8 @@ async def add_circle_of_friends_api(add_data:OperatorCircleOfFriendsPydantic=For
     user_id=user_data.id
     add_obj =await CircleOfFriends.create(CircleOfFriends(**{**add_data.model_dump(),"user_id":user_id}))
     print(add_obj)
-    add_obj_json=await OperatorCircleOfFriendsPydantic.from_tortoise_orm(add_obj).model_dump_json()
-    print(add_obj_json)
+    # add_obj_json=await OperatorCircleOfFriendsPydantic.from_tortoise_orm(add_obj).model_dump_json()
+    # print(add_obj_json)
     return HTMLResponse(content="成功")
 
 async def create_orm_model_test_api():
