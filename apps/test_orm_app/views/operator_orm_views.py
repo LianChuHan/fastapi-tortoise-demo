@@ -82,6 +82,7 @@ async def query_orm_foreign_key_data():
 
 async def query_orm_model_test():
     user_info_data = await UserInfo.filter().filter()
+    print(user_info_data)
     data_json=await UserInfoPydantic.from_queryset_single(user_info_data)
     print(data_json)
     return HTMLResponse(content="ok")
