@@ -82,8 +82,7 @@ async def query_orm_foreign_key_data():
 
 async def query_orm_model_test():
     user_info_data = await User.filter().first()
-    print(user_info_data)
     data_pydantic_obj=await UserPydantic.from_queryset_single(user_info_data)
     print(data_pydantic_obj)
-    print(data_pydantic_obj.model_dump_json())
+    print(dir(data_pydantic_obj))
     return HTMLResponse(content="ok")
