@@ -81,7 +81,7 @@ async def query_orm_foreign_key_data():
 
 
 async def query_orm_model_test():
-    data_pydantic_obj = await UserPydantic.from_queryset_single(User.filter())
+    data_pydantic_obj = await UserPydantic.from_queryset_single(User.first())
     data_pydantic_obj_many_lis = await UserPydantic.from_queryset(User.filter())
     print(data_pydantic_obj.model_dump())
     for   data_pydantic_obj_many in data_pydantic_obj_many_lis:
