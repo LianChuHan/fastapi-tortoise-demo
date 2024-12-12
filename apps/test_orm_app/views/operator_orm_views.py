@@ -18,7 +18,7 @@ from db_models.models.user_info_model import UserInfo
 from db_models.models.circle_of_friends_model import CircleOfFriends
 from db_models.schemas.user_pydantic import UserPydantic
 from db_models.schemas.user_info_pydantic import UserInfoPydantic
-from db_models.schemas.circle_of_friends_pydantic import CircleOfFriendsPydantic
+from db_models.schemas.circle_of_friends_pydantic import CircleOfFriendsPydantic,OperatorCircleOfFriendsPydantic
 import random
 
 
@@ -89,12 +89,12 @@ async def query_orm_model_test_api():
         print(data_pydantic_obj_many.model_dump())
 
     return HTMLResponse(content="ok")
-async def add_circle_of_friends_api(add_data:CircleOfFriendsPydantic=Form(...,description="添加朋友圈")):
+async def add_circle_of_friends_api(add_data:OperatorCircleOfFriendsPydantic=Form(...,description="添加朋友圈")):
     user_data=await User.first()
     user_id=user_data.id
     add_obj =await CircleOfFriends.create(CircleOfFriends({**add_data.model_dump(),"user_id":user_id}))
 
-    return HTMLResponse(content=await CircleOfFriendsPydantic.from_tortoise_orm(add_obj).model_dump_json())
+    return HTMLResponse(content=await OperatorCircleOfFriendsPydantic.from_tortoise_orm(add_obj).model_dump_json())
 
 async def create_orm_model_test_api():
 
