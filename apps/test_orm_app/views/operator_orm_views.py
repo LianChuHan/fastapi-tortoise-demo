@@ -84,5 +84,5 @@ async def query_orm_model_test():
     data_pydantic_obj = await UserPydantic.from_queryset_single(User.filter().first())
     data_pydantic_obj_many = await UserPydantic.from_queryset(User.filter())
     print(data_pydantic_obj.model_dump())
-    print(data_pydantic_obj_many.model_dump())
+    print(data_pydantic_obj_many)
     return HTMLResponse(content="ok")
