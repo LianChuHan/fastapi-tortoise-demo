@@ -32,7 +32,7 @@ async def bulk_create_db_api():
     print(bulk_db_info)
     print(type(bulk_db_info))
     print(dir(bulk_db_info))
-    return_lis = [UserPydantic.from_tortoise_orm(info) for info in bulk_db_info]
+    return_lis = [UserPydantic.from_orm(info).model_dump_json() for info in bulk_db_info]
     print(return_lis)
     return HTMLResponse(content="插入成功")
 
