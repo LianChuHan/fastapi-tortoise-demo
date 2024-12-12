@@ -6,7 +6,7 @@ from typing import List
 from starlette.responses import JSONResponse
 
 from project_app_encapsulation.base_excepts.errors_except_class.errors_except_class import ErrorsExceptClass
-from fastapi import Query, Depends, BackgroundTasks, Path, Body, File, UploadFile
+from fastapi import Query, Depends, BackgroundTasks, Path, Body, File, UploadFile,Form
 from fastapi.requests import Request
 from fastapi.responses import HTMLResponse, Response, RedirectResponse, StreamingResponse, FileResponse
 from apps.test_app.schemas.test_app_schemas import UnionQueryValueApi
@@ -15,6 +15,7 @@ from project_sys_path import STATIC_DIR
 from fastapi.security import HTTPBasicCredentials, HTTPBasic
 from db_models.models.user_model import User
 from db_models.models.user_info_model import UserInfo
+from db_models.models.circle_of_friends_model import CircleOfFriends
 from db_models.schemas.user_pydantic import UserPydantic
 from db_models.schemas.user_info_pydantic import UserInfoPydantic
 from db_models.schemas.circle_of_friends_pydantic import CircleOfFriendsPydantic
@@ -66,7 +67,7 @@ async def query_orm_foreign_key_api():
     return JSONResponse(content=user_dic)
 
 
-async def query_orm_foreign_key_data():
+async def query_orm_foreign_key_data_api():
     response_json = {}
     user_data = await User.all()
     for user in user_data:
@@ -80,7 +81,7 @@ async def query_orm_foreign_key_data():
     return JSONResponse(content=response_json)
 
 
-async def query_orm_model_test():
+async def query_orm_model_test_api():
     data_pydantic_obj = await UserPydantic.from_queryset_single(User.first())
     data_pydantic_obj_many_lis = await UserPydantic.from_queryset(User.filter())
     print(data_pydantic_obj.model_dump())
@@ -88,6 +89,13 @@ async def query_orm_model_test():
         print(data_pydantic_obj_many.model_dump())
 
     return HTMLResponse(content="ok")
-async def create_orm_model_test():
+async def add_circle_of_friends_api(add_data:CircleOfFriendsPydantic=Form(...,description="添加朋友圈")):
+    user_data=await User.first()
+    user_id=user_data.id
+    add_obj =await CircleOfFriends.create(CircleOfFriends({**add_data.model_dump(),"user_id":user_id}))
+
+    return HTMLResponse(content=await CircleOfFriendsPydantic.from_tortoise_orm(add_obj).model_dump_json())
+
+async def create_orm_model_test_api():
 
     return HTMLResponse(content="点了一下啥也没干~~")
