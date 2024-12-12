@@ -29,11 +29,7 @@ async def bulk_create_db_api():
     bulk_db_info = await User.bulk_create(
         [User(**create_data) for create_data in bulk_data_lis]
     )
-    print(bulk_db_info)
-    print(type(bulk_db_info))
-    print(dir(bulk_db_info))
-    return_lis = [UserPydantic.from_orm(info).model_dump_json() for info in bulk_db_info]
-    print(return_lis)
+
     return HTMLResponse(content="插入成功")
 
 
@@ -86,5 +82,6 @@ async def query_orm_foreign_key_data():
 
 async def query_orm_model_test():
     user_info_data = await UserInfo.filter().filter()
-    print(UserInfoPydantic.schema_json())
+    data_json=await UserInfoPydantic.from_queryset_single(user_info_data)
+    print(data_json)
     return HTMLResponse(content="ok")
