@@ -37,7 +37,7 @@ async def query_orm_data_api():
     user_data = await User.all()
     ser_lis = []
     for user_obj in user_data:
-        user_pydantic_base_model = UserPydantic.from_orm(user_obj)
+        user_pydantic_base_model = await  UserPydantic.from_tortoise_orm(user_obj)
         user_dict = user_pydantic_base_model.model_dump_json()
         ser_lis.append(user_dict)
     return HTMLResponse(content=f"{ser_lis}")
@@ -48,7 +48,7 @@ async def query_orm_id_api(id: int = Path(..., description="用户id")):
     user_obj = await  User.filter(id=id)
     if not user_obj:
         return HTMLResponse(content="查无此人")
-    user_pydantic_model = UserPydantic.from_orm(user_obj)
+    user_pydantic_model = await  UserPydantic.from_tortoise_orm(user_obj)
     return HTMLResponse(content=user_pydantic_model.model_dump_json())
 
 
@@ -60,7 +60,7 @@ async def query_orm_foreign_key_api():
         user_info_lis = await user.user_info
         user_info_info = []
         for user_info_obj in user_info_lis:
-            user_info_pydantic = UserInfoPydantic.from_orm(user_info_obj)
+            user_info_pydantic = await UserInfoPydantic.from_tortoise_orm(user_info_obj)
             user_info_info.append(user_info_pydantic.model_dump_json())
         user_dic.setdefault(username, user_info_info)
     return JSONResponse(content=user_dic)
@@ -74,7 +74,7 @@ async def query_orm_foreign_key_data():
         circle_of_friends_data = await user.circle_of_friends
         circle_of_friends_lis = []
         for circle_of_friends in circle_of_friends_data:
-            circle_of_friends_pydantic = CircleOfFriendsPydantic.from_orm(circle_of_friends)
+            circle_of_friends_pydantic = await  CircleOfFriendsPydantic.from_tortoise_orm(circle_of_friends)
             circle_of_friends_lis.append(circle_of_friends_pydantic.model_dump_json())
         response_json.setdefault(username, circle_of_friends_lis)
     return JSONResponse(content=response_json)
