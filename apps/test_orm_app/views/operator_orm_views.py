@@ -88,3 +88,6 @@ async def query_orm_model_test():
         print(data_pydantic_obj_many.model_dump())
 
     return HTMLResponse(content="ok")
+async def create_orm_model_test():
+    await User.create(User(username="李四",sex=3))
+    return HTMLResponse(content="ok")
