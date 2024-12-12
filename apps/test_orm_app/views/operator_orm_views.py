@@ -89,5 +89,5 @@ async def query_orm_model_test():
 
     return HTMLResponse(content="ok")
 async def create_orm_model_test():
-    await User.create(User(username="李四",sex=3))
-    return HTMLResponse(content="ok")
+
+    return HTMLResponse(content="点了一下啥也没干~~")
