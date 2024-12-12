@@ -71,6 +71,6 @@ async def create_app():
     app.add_exception_handler(ErrorsExceptClass, errors_except_class_func)
     app.add_exception_handler(StarletteHTTPException, not_found_err_func)
     app.add_exception_handler(RequestValidationError, request_validation_func)
-    config = Config(app, host="127.0.0.1", port=8080, reload=True)
+    config = Config(app, host="0", port=8080, reload=True)
     server = Server(config)
     await server.serve()

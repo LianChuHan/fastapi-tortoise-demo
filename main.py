@@ -1,9 +1,10 @@
 import asyncio
 from create_base_app import create_app
-
+import uvloop
 
 
 if __name__ == '__main__':
+    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(create_app())

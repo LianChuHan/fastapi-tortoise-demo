@@ -46,7 +46,7 @@ async  def create_html_text(image_path):
 
 async def not_found_err_func(request:Request,ext:StarletteHTTPException):
     resource=HTMLResponse(
-        content=await  create_html_text(image_path=request.url_for("static",path='404.gif'))
+        content=await  create_html_text(image_path=request.url_for("static",path='404.png'))
     )
     return resource
 
