@@ -37,7 +37,7 @@ async def create_app():
     register_tortoise(
         app=app,
         config=DATABASE_CONFIG,
-        generate_schemas=True,  # 如果数据库为空，则自动生成对应表单,生产环境不要开
+        generate_schemas=False,  # 如果数据库为空，则自动生成对应表单,生产环境不要开
         add_exception_handlers=True,  # 生产环境不要开，会泄露调试信息
     )
     app.add_middleware(middleware_class=ApiBaseMiddleware, assigned_number=1)
