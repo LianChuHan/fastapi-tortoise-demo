@@ -38,7 +38,7 @@ async def create_app():
         app=app,
         config=DATABASE_CONFIG,
         generate_schemas=False,  # 如果数据库为空，则自动生成对应表单,生产环境不要开
-        add_exception_handlers=True,  # 生产环境不要开，会泄露调试信息
+        add_exception_handlers=False,  # 生产环境不要开，会泄露调试信息
     )
     app.add_middleware(middleware_class=ApiBaseMiddleware, assigned_number=1)
     # 请求中必须包含 Host 字段，为防止 HTTP 主机报头攻击，并且添加中间件的时候，还可以指定一个 allowed_hosts，那么它是干什么的呢？
