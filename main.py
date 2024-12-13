@@ -5,7 +5,7 @@ import uvloop
 
 if __name__ == '__main__':
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     try:
         loop.run_until_complete(create_app())
         print("启动Fast-API服务")
