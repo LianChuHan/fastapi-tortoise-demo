@@ -8,7 +8,8 @@ class BaseOrmModel(models.Model):
     is_del = fields.SmallIntField(default=0, description="是否删除")
 
     class PydanticMeta:
-        exclude = ( "create_datetime",)
+        exclude = set()
+        PydanticMeta= set()
 
     class Meta:
         abstract = True
