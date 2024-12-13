@@ -30,9 +30,6 @@ DATABASE_CONFIG = {
         "models": {
             "models": MODELS_PATH_LIS,  # 你的模型所在的模块
             "default_connection": "default",
-        },"aerich":{
-            "models":MODELS_PATH_LIS,
-            "default_connection": "default",
         }
     },
 }
