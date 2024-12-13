@@ -89,11 +89,11 @@ async def query_orm_model_test_api():
         print(data_pydantic_obj_many.model_dump())
 
     return HTMLResponse(content="ok")
-async def add_circle_of_friends_api(add_data:CircleOfFriendsPydantic=Form(...,description="添加朋友圈")):
+async def add_circle_of_friends_api(add_data:OperatorCircleOfFriendsPydantic=Form(...,description="添加朋友圈")):
     user_data=await User.first()
     user_id=user_data.id
     print(add_data.model_dump())
-    await CircleOfFriends.create(CircleOfFriends(**add_data.model_dump(),user_id=user_id))
+    await CircleOfFriends.create(CircleOfFriends(**add_data.model_dump(),user=user_data))
     # print(add_obj)
     # add_obj_json=await OperatorCircleOfFriendsPydantic.from_tortoise_orm(add_obj).model_dump_json()
     # print(add_obj_json)
