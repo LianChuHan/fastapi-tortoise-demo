@@ -100,4 +100,4 @@ async def add_circle_of_friends_api(add_data:OperatorCircleOfFriendsPydantic=For
 
 async def create_orm_model_test_api():
 
-    return HTMLResponse(content="点了一下啥也没干~~")
+    return JSONResponse(content=f"点了一下啥也没干~~\n{CircleOfFriendsPydantic.model_json_schema()}")
