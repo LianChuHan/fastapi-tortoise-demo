@@ -19,15 +19,18 @@ def get_model_path_lis():
         models_path_lis.append(abs_path_st + "." + new_file_name)
     return models_path_lis
 
-
+MODELS_PATH_LIS=get_model_path_lis()
 DATABASE_CONFIG = {
     "connections": {
         "default": "mysql://root:123456@127.0.0.1:3306/fast_api_db",  # 替换为你的数据库连接字符串
     },
     "apps": {
         "models": {
-            "models": get_model_path_lis(),  # 你的模型所在的模块
+            "models": MODELS_PATH_LIS,  # 你的模型所在的模块
             "default_connection": "default",
-        },
+        },"aerich":{
+            "models":MODELS_PATH_LIS,
+            "default_connection": "default",
+        }
     },
 }
