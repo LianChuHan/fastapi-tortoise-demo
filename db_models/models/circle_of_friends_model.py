@@ -1,7 +1,7 @@
 from db_models.base_model import BaseOrmModel
 from tortoise import fields
 from typing import Text
-from tortoise.contrib.pydantic import pydantic_model_creator
+
 
 
 class CircleOfFriends(BaseOrmModel):
