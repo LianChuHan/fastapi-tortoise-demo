@@ -16,7 +16,7 @@ def get_model_path_lis():
     for file_name in all_mode_file:
         file_name_lis = file_name.split(".")
         new_file_name = file_name_lis[0]
-        if new_file_name=="__init___":
+        if new_file_name in ["__init___","__pycache__"]:
             continue
         models_path_lis.append(abs_path_st + "." + new_file_name)
     return models_path_lis
