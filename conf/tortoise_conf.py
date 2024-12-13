@@ -16,14 +16,12 @@ def get_model_path_lis():
     for file_name in all_mode_file:
         file_name_lis = file_name.split(".")
         new_file_name = file_name_lis[0]
-        print(new_file_name)
-        if new_file_name in ["__init___","__pycache__"]:
+        if new_file_name in ["__init__","__pycache__"]:
             continue
         models_path_lis.append(abs_path_st + "." + new_file_name)
     return models_path_lis
 
 MODELS_PATH_LIS=get_model_path_lis()
-print(MODELS_PATH_LIS)
 DATABASE_CONFIG = {
     "connections": {
         "default": "mysql://root:123456@127.0.0.1:3306/fast_api_db",  # 替换为你的数据库连接字符串
