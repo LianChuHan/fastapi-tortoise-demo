@@ -1,6 +1,10 @@
-from tortoise.contrib.pydantic import pydantic_model_creator,pydantic_queryset_creator
+from base_class.base_pydantic_model_creator import base_pydantic_model_creator
 from db_models.models.user_info_model  import UserInfo
 
 
-class UserInfoPydantic(pydantic_model_creator(UserInfo)):
+class UserInfoPydantic(base_pydantic_model_creator(UserInfo,exclude=None)):
+    pass
+
+
+class OperatorUserInfoPydantic(base_pydantic_model_creator(UserInfo)):
     pass

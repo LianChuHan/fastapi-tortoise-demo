@@ -7,6 +7,8 @@ class BaseOrmModel(models.Model):
     update_datetime = fields.DatetimeField(auto_now=True, description="更新时间")
     is_del = fields.SmallIntField(default=0, description="是否删除")
 
+    class PydanticMeta:
+        exclude = ( "create_datetime",)
+
     class Meta:
         abstract = True
-
