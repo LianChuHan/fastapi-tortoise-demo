@@ -96,7 +96,7 @@ async def add_circle_of_friends_api(add_data:OperatorCircleOfFriendsPydantic=For
     print(add_obj)
     add_obj_pydantic=await OperatorCircleOfFriendsPydantic.from_tortoise_orm(add_obj)
     add_obj_json=add_obj_pydantic.model_dump_json()
-    return HTMLResponse(content=f"用户:{add_obj_json.username}添加-->{add_obj_json}")
+    return HTMLResponse(content=f"用户:{user_obj.username}添加-->{add_obj_json}")
 
 async def create_orm_model_test_api():
 
