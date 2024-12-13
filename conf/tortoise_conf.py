@@ -7,7 +7,7 @@ separator = os.sep
 
 
 def get_model_path_lis():
-    models_path_lis = []
+    models_path_lis = ["aerich.models'"]
     all_mode_file = os.listdir(MODELS_DIR)
     abs_path_lis = MODELS_DIR.split(DIR_PATH)
     abs_path_st = abs_path_lis[1].replace(separator, ".")
