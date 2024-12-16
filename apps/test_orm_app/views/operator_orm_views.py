@@ -91,6 +91,8 @@ async def query_orm_model_test_api():
     return HTMLResponse(content="ok")
 async def add_circle_of_friends_api(add_data:OperatorCircleOfFriendsPydantic=Form(...,description="添加朋友圈")):
     user_data=await User.all()
+    if not  user_data:
+        return HTMLResponse(content=f"缺少用户数据")
     user_obj=random.choice(user_data)
     add_obj=await CircleOfFriends.create(**add_data.model_dump(),user_id=user_obj.id)
     print(add_obj)
