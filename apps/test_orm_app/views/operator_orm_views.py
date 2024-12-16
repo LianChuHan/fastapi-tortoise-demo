@@ -100,6 +100,11 @@ async def add_circle_of_friends_api(add_data:OperatorCircleOfFriendsPydantic=For
     add_obj_json=add_obj_pydantic.model_dump_json()
     return HTMLResponse(content=f"用户:{user_obj.username}添加-->{add_obj_json}")
 
-async def create_orm_model_test_api():
+from pydantic import  BaseModel,Field
 
+class TestReqFormBaseModel(BaseModel):
+    username: str=Field(...,description="用户名")
+    age: int=Field(...,description="年龄")
+async def create_orm_model_test_api(req_data:TestReqFormBaseModel=Form(...)):
+    print(req_data.model_dump())
     return JSONResponse(content=f"点了一下啥也没干~~\n{CircleOfFriendsPydantic.model_json_schema()}")
