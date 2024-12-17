@@ -4,7 +4,7 @@ from tortoise import Tortoise
 
 
 async def app_register_tortoise_orm(app):
-    Tortoise.init_models(models_paths=DATABASE_CONFIG)
+    Tortoise.init_models(models_paths=DATABASE_CONFIG,app_label="models")
     register_tortoise(
         app=app,
         config=DATABASE_CONFIG,
