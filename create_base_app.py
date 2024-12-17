@@ -18,7 +18,7 @@ from starlette.middleware.gzip import GZipMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 from conf.tortoise_conf import DATABASE_CONFIG
 from fastapi.exceptions import RequestValidationError
-
+from tortoise import Tortoise
 PROJECT_APP = None
 
 
@@ -34,6 +34,7 @@ async def create_app():
     )
     global PROJECT_APP
     PROJECT_APP = app
+    Tortoise.init_models(models_paths=DATABASE_CONFIG)
     register_tortoise(
         app=app,
         config=DATABASE_CONFIG,
