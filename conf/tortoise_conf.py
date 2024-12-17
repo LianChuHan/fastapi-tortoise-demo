@@ -22,6 +22,7 @@ def get_model_path_lis():
     return models_path_lis
 
 MODELS_PATH_LIS=get_model_path_lis()
+
 DATABASE_CONFIG = {
     "connections": {
         "default": "mysql://root:123456@127.0.0.1:3306/fast_api_db",  # 替换为你的数据库连接字符串

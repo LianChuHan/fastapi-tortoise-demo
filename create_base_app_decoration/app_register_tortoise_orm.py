@@ -1,10 +1,10 @@
 from tortoise.contrib.fastapi import register_tortoise
-from conf.tortoise_conf import DATABASE_CONFIG
+from conf.tortoise_conf import DATABASE_CONFIG,MODELS_PATH_LIS
 from tortoise import Tortoise
 
 
 async def app_register_tortoise_orm(app):
-    Tortoise.init_models(models_paths=DATABASE_CONFIG,app_label="models")
+    Tortoise.init_models(models_paths=MODELS_PATH_LIS,app_label="models")
     register_tortoise(
         app=app,
         config=DATABASE_CONFIG,
